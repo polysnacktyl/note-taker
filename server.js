@@ -8,43 +8,43 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('/public/'));
 
-app.use(express.static(path.join(__dirname, 'assets/js/')));
-app.use('indexjs', (req, res, next) => {
-    res.sendFile('index.js');
+app.use(express.static(path.join(__dirname, '')));
+app.use('index.js', (req, res, next) => {
+    res.sendFile('./index.js');
 });
 
-app.use(express.static(path.join(__dirname, 'assets/css/')));
-app.use('css', (req, res) => {
+app.use(express.static(path.join(__dirname, '')));
+app.use('styles.css', (req, res) => {
     res.sendFile('styles.css');
 });
 
 app.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, './index.html'));
 });
 
 app.get('/index', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, './index.html'));
 });
 
 app.get('/notes', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../notes.html'));
+    res.sendFile(path.join(__dirname, './notes.html'));
 });
 
 app.get('/api/notes', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'db.json'));
+    res.sendFile(path.join(__dirname, './db.json'));
 });
 
 app.get('/api/notes/:id', (req, res, next) => {
-    let allTheNotes = JSON.parse(fs.readFileSync('db.json'));
+    let allTheNotes = JSON.parse(fs.readFileSync('./db.json'));
     res.json(allTheNotes[Number(req.params.id)]);
 });
 
 app.get('*', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, './index.html'));
 });
 
 app.post('/api/notes', (req, res, next) => {
-    let allTheNotes = JSON.parse(fs.readFileSync('db.json'));
+    let allTheNotes = JSON.parse(fs.readFileSync('./db.json'));
     let newNote = req.body;
     let noteID = (allTheNotes.length).toString();
     newNote.id = noteID;
@@ -55,7 +55,7 @@ app.post('/api/notes', (req, res, next) => {
 });
 
 app.delete('/api/notes/:id', (req, res, next) => {
-    let allTheNotes = JSON.parse(fs.readFileSync('db.json'));
+    let allTheNotes = JSON.parse(fs.readFileSync('./db.json'));
     let noteID = req.params.id;
     let newID = 0;
     allTheNotes = allTheNotes.filter(deleteThisNote => {
@@ -67,7 +67,7 @@ app.delete('/api/notes/:id', (req, res, next) => {
         newID++;
     }
 
-    fs.writeFileSync('db.json', JSON.stringify(allTheNotes));
+    fs.writeFileSync('./db.json', JSON.stringify(allTheNotes));
     res.json(allTheNotes);
 });
 
