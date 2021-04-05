@@ -19,15 +19,15 @@ app.use('css', (req, res) => {
 });
 
 app.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.get('/index', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.get('/notes', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'notes.html'));
+    res.sendFile(path.join(__dirname, '../notes.html'));
 });
 
 app.get('/api/notes', (req, res, next) => {
