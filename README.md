@@ -1,4 +1,4 @@
-# Team Profile Generator 
+# [Team Profile Generator](https://polysnacktyl.github.io/note-taker/) 
 
 ## Description
 Working with Javascript, node, and Express, this application connects front and back end code through a server allowing for users to input notes in the browser which are saved to a database. Notes can be deleted, but persist through browser refresh. 
